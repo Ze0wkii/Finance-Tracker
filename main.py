@@ -3,6 +3,12 @@ from datetime import datetime
 import csv
 from data_entry import get_date, get_amount, get_category, get_description
 
+
+dashboard = {
+    1:"Add a new Transaction",
+    2:"View Transaction in a specific date range",
+    3:"Exit"
+}
 class CSV:
     CSV_file = "finance_data.csv"
     COLUMNS=["date", "amount", "category", "description"]
@@ -51,7 +57,9 @@ class CSV:
             print(f"Total Savings:{total_income - total_expense}):.2f")
 
         
-
+    @classmethod
+    def transactions_get(cls):
+        pass
 
 
 
@@ -64,3 +72,29 @@ def add():
     CSV.add_entry(date,amount,category,description)
 
 add()
+
+def main():
+    print("--Welcome to your Personal Finance Tracker--")
+    for key, value in dashboard.items():
+        return print(f"{key}:{value}")
+    choice = int(input("Enter your Choice: "))
+    try:
+        if choice in dashboard and choice==1:
+            add()
+        elif choice in dashboard and choice==2:
+            CSV.transactions_get()
+        elif choice in dashboard and choice==3:
+            return exit
+        else:
+            raise ValueError("The Value you have entered is incorrect (type either of them 1, 2 or 3 for desired function)")
+    except ValueError as e:
+        print(e)
+        return main()
+        
+
+        
+
+
+        
+    
+
